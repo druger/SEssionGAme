@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_sega" default="compile.module.sega">
+  <dirname property="module.sega.basedir" file="${ant.file.module_sega}"/>
+  
+  <property name="module.jdk.home.sega" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.sega" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.sega" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.sega" value="-encoding windows-1251 -source 1.6 ${compiler.args}"/>
+  
+  <property name="sega.output.dir" value="${module.sega.basedir}/out/production/SEGA"/>
+  <property name="sega.testoutput.dir" value="${module.sega.basedir}/out/test/SEGA"/>
+  
+  <path id="sega.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="sega.module.production.classpath">
+    <path refid="${module.jdk.classpath.sega}"/>
+  </path>
+  
+  <path id="sega.runtime.production.module.classpath">
+    <pathelement location="${sega.output.dir}"/>
+  </path>
+  
+  <path id="sega.module.classpath">
+    <path refid="${module.jdk.classpath.sega}"/>
+    <pathelement location="${sega.output.dir}"/>
+  </path>
+  
+  <path id="sega.runtime.module.classpath">
+    <pathelement location="${sega.testoutput.dir}"/>
+    <pathelement location="${sega.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.sega">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.sega">
+    <patternset refid="excluded.from.module.sega"/>
+  </patternset>
+  
+  <path id="sega.module.sourcepath">
+    <dirset dir="${module.sega.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.sega" depends="compile.module.sega.production,compile.module.sega.tests" description="Compile module SEGA"/>
+  
+  <target name="compile.module.sega.production" depends="register.custom.compilers" description="Compile module SEGA; production classes">
+    <mkdir dir="${sega.output.dir}"/>
+    <javac2 destdir="${sega.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.sega}/javac">
+      <compilerarg line="${compiler.args.sega}"/>
+      <bootclasspath refid="sega.module.bootclasspath"/>
+      <classpath refid="sega.module.production.classpath"/>
+      <src refid="sega.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.sega"/>
+    </javac2>
+    
+    <copy todir="${sega.output.dir}">
+      <fileset dir="${module.sega.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.sega.tests" depends="register.custom.compilers,compile.module.sega.production" description="compile module SEGA; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.sega" description="cleanup module">
+    <delete dir="${sega.output.dir}"/>
+    <delete dir="${sega.testoutput.dir}"/>
+  </target>
+</project>
