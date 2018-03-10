@@ -1,17 +1,18 @@
 package framework;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.LinkedList;
 
 public abstract class GameObject {
     
-    protected float x,y;
+    protected float x;
+    protected float y;
     protected ObjectId id;
-    protected float velX = 0, velY = 0; 
+    protected float velX = 0;
+    protected float velY = 0;
     protected boolean falling = true;
-    protected boolean jumping = false;
-    protected int facing = 1; //напраление:1=right; -1=left
+    protected boolean jumping;
+    protected int facing = 1; //1=right; -1=left
     
     public GameObject(float x, float y, ObjectId id){
         this.x = x;

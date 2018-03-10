@@ -1,11 +1,11 @@
 package framework;
 
-public enum ObjectId { //enum(перечисление)- обеспечивает для переменной, набор предопределенных констант
+public enum ObjectId {
     
-    Player(),
-    PlayerGun(),
-    Teacher(),
-    Flag(),
-    Block(),
-    Bullet();
+    PLAYER(),
+    PLAYER_GUN(),
+    TEACHER(),
+    FLAG(),
+    BLOCK(),
+    BULLET()
 }

@@ -2,13 +2,14 @@ package sega;
 
 import framework.GameObject;
 import framework.ObjectId;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.util.LinkedList;
 import objects.Block;
 import objects.Flag;
 import objects.Player;
 import objects.Prepod;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
 /**
  *
@@ -73,18 +74,18 @@ public class Handler {
                int blue = (pixel) & 0xff;
                
                //получаем дороги
-               if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*32, yy*32, 1, ObjectId.Block));//дорога_иатэ
-               if(red == 255 && green == 0 && blue == 255) addObject(new Block(xx*32, yy*32, 2, ObjectId.Block));//дорога_кабинет
+               if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*32, yy*32, 1, ObjectId.BLOCK));//дорога_иатэ
+               if(red == 255 && green == 0 && blue == 255) addObject(new Block(xx*32, yy*32, 2, ObjectId.BLOCK));//дорога_кабинет
                //получаем игрока
-               if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*32, yy*32, /*1,*/ this, cam, ObjectId.Player));
-               if(red == 0 && green == 127 && blue == 14) addObject(new Player(xx*32, yy*32, /*2,*/ this, cam, ObjectId.PlayerGun));//игрок с автоматом
+               if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*32, yy*32, /*1,*/ this, cam, ObjectId.PLAYER));
+               if(red == 0 && green == 127 && blue == 14) addObject(new Player(xx*32, yy*32, /*2,*/ this, cam, ObjectId.PLAYER_GUN));//игрок с автоматом
                //получаем препода
-               if(red == 90 && green == 255 && blue == 240) addObject(new Prepod(xx*32, yy*32, this, 1, ObjectId.Teacher));//матан
-               if(red == 0 && green == 255 && blue == 0) addObject(new Prepod(xx*32, yy*32, this, 2, ObjectId.Teacher));//прг
-               if(red == 255 && green == 190 && blue == 0) addObject(new Prepod(xx*32, yy*32, this, 3, ObjectId.Teacher));//fizika
-               if(red == 255 && green == 160 && blue == 60) addObject(new Prepod(xx*32, yy*32, this, 4, ObjectId.Teacher));//eng
+               if(red == 90 && green == 255 && blue == 240) addObject(new Prepod(xx*32, yy*32, this, 1, ObjectId.TEACHER));//матан
+               if(red == 0 && green == 255 && blue == 0) addObject(new Prepod(xx*32, yy*32, this, 2, ObjectId.TEACHER));//прг
+               if(red == 255 && green == 190 && blue == 0) addObject(new Prepod(xx*32, yy*32, this, 3, ObjectId.TEACHER));//fizika
+               if(red == 255 && green == 160 && blue == 60) addObject(new Prepod(xx*32, yy*32, this, 4, ObjectId.TEACHER));//eng
              
-               if(red == 255 && green == 255 && blue == 0) addObject(new Flag(xx*32, yy*32, ObjectId.Flag));
+               if(red == 255 && green == 255 && blue == 0) addObject(new Flag(xx*32, yy*32, ObjectId.FLAG));
                    
             }
         }

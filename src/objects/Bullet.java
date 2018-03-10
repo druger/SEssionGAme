@@ -5,15 +5,12 @@ package objects;
 import framework.GameObject;
 import framework.ObjectId;
 import framework.SpriteList;
-import framework.Texture;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import sega.BufferedImageLoader;
+import sega.Handler;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import sega.BufferedImageLoader;
-import sega.Game;
-import sega.Handler;
 
 public class Bullet extends GameObject {
     
@@ -51,7 +48,7 @@ public class Bullet extends GameObject {
           GameObject tempObject = handler.object.get(i);
           
           //удаление объекта
-          if(tempObject.getId() == ObjectId.Bullet){
+          if(tempObject.getId() == ObjectId.BULLET){
               if((tempObject.getX() < 0) || (tempObject.getX() > 2305)){
                   handler.removeObject(tempObject);
               }

@@ -4,15 +4,14 @@ import audio.AudioPlayer;
 import framework.GameObject;
 import framework.ObjectId;
 import framework.Texture;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.HashMap;
-import java.util.LinkedList;
 import sega.Animation;
 import sega.Camera;
 import sega.Game;
 import sega.Handler;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Player extends GameObject {
 
@@ -95,7 +94,7 @@ public class Player extends GameObject {
         for(int i=0; i<handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             
-            if(tempObject.getId()==ObjectId.Block){
+            if(tempObject.getId()==ObjectId.BLOCK){
                 //столкновение с объектом сверху
                /* if(getBoundsTop().intersects(tempObject.getBounds())){ //intersect-Определяет, пересекаются ли этот Прямоугольник и указанный Прямоугольник. Два прямоугольника пересекаются, если их пересечение не пусто.
                     y = tempObject.getY() + 35; 
@@ -119,7 +118,7 @@ public class Player extends GameObject {
                 if(getBoundsLeft().intersects(tempObject.getBounds())){ 
                     x = tempObject.getX() + 28;
                 }
-            } else if(tempObject.getId() == ObjectId.Flag){
+            } else if(tempObject.getId() == ObjectId.FLAG){
                 //switch level
                 if(getBounds().intersects(tempObject.getBounds())){
                     x = tempObject.getX() - 46;
@@ -136,56 +135,56 @@ public class Player extends GameObject {
         if(jumping){
             sfx.get("jump").play();
             if(facing == 1){
-                if(id == ObjectId.Player){
-                    g.drawImage(tex.player_jump[0], (int)x, (int)y, 90, 172, null);
+                if(id == ObjectId.PLAYER){
+                    g.drawImage(tex.playerJump[0], (int)x, (int)y, 90, 172, null);
                 }
-                if(id == ObjectId.PlayerGun){
-                    g.drawImage(tex.playerGun_jump[0], (int)x, (int)y, 100, 168, null);
+                if(id == ObjectId.PLAYER_GUN){
+                    g.drawImage(tex.playerGunJump[0], (int)x, (int)y, 100, 168, null);
                 }
             }
             else 
                 if(facing == -1){
-                    if(id == ObjectId.Player){
-                        g.drawImage(tex.player_jump[1], (int)x, (int)y, 90, 172, null);
+                    if(id == ObjectId.PLAYER){
+                        g.drawImage(tex.playerJump[1], (int)x, (int)y, 90, 172, null);
                     }
-                    if(id == ObjectId.PlayerGun){
-                        g.drawImage(tex.playerGun_jump[1], (int)x, (int)y, 100, 168, null);
+                    if(id == ObjectId.PLAYER_GUN){
+                        g.drawImage(tex.playerGunJump[1], (int)x, (int)y, 100, 168, null);
                     }
                 }
         }else{
             //если игрок движется, изображение меняется, иначе неменяется
         if(velX != 0){
             if(facing ==1){
-                if(id == ObjectId.Player){
+                if(id == ObjectId.PLAYER){
                     playerWalk.drawAnimation(g, (int)x, (int)y/*, 90, 172*/);
                 }
-                if(id == ObjectId.PlayerGun){
+                if(id == ObjectId.PLAYER_GUN){
                    playerGunWalk.drawAnimation(g, (int)x, (int)y/*, 140, 172*/); 
                 }
             }
             else{
-                if(id == ObjectId.Player){
+                if(id == ObjectId.PLAYER){
                     playerWalkLeft.drawAnimation(g, (int)x, (int)y/*, 90, 172*/);
                 }
-                if(id == ObjectId.PlayerGun){
+                if(id == ObjectId.PLAYER_GUN){
                    playerGunWalkLeft.drawAnimation(g, (int)x, (int)y/*, 115, 172*/); 
                 }
             }
         }else{
             if(facing ==1){
-                if(id == ObjectId.Player){
+                if(id == ObjectId.PLAYER){
                     g.drawImage(tex.player[0],(int) x, (int)y, 110, 172, null);
                 }
-                if( id == ObjectId.PlayerGun){
+                if( id == ObjectId.PLAYER_GUN){
                     g.drawImage(tex.playerGun[0], (int)x, (int)y, 130, 172, null);
                 }
             }
             else
                 if(facing == -1){
-                    if(id == ObjectId.Player){
+                    if(id == ObjectId.PLAYER){
                         g.drawImage(tex.player[0],(int) x, (int)y, 110, 172, null);
                     }
-                    if(id == ObjectId.PlayerGun){
+                    if(id == ObjectId.PLAYER_GUN){
                         g.drawImage(tex.playerGun[0], (int)x, (int)y, 130, 172, null);
                     }
                 }
@@ -209,9 +208,9 @@ public class Player extends GameObject {
         return new Rectangle((int)((int)x+(width/2)-(width/2)/2), (int)y, (int)width/2, (int)height/2);
     }
     public Rectangle getBoundsRight() {
-        return new Rectangle((int)((int)x+width-5), (int)y+5, (int)5, (int)height-10);
+        return new Rectangle((int)((int)x+width-5), (int)y+5, 5, (int)height-10);
     }
     public Rectangle getBoundsLeft() {
-        return new Rectangle((int)x, (int)y+5, (int)5, (int)height-10);
+        return new Rectangle((int)x, (int)y+5, 5, (int)height-10);
     } 
 }
