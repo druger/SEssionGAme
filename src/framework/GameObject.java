@@ -1,7 +1,7 @@
 package framework;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.List;
 
 public abstract class GameObject {
     
@@ -12,7 +12,7 @@ public abstract class GameObject {
     protected float velY = 0;
     protected boolean falling = true;
     protected boolean jumping;
-    protected int facing = 1; //1=right; -1=left
+    protected int direction = 1; //1=right; -1=left
     
     public GameObject(float x, float y, ObjectId id){
         this.x = x;
@@ -20,7 +20,7 @@ public abstract class GameObject {
         this.id = id;
     }
     
-    public abstract void tick(LinkedList<GameObject> object);
+    public abstract void tick(List<GameObject> object);
     public abstract void render(Graphics g);
     public abstract Rectangle getBounds();
     
@@ -69,7 +69,7 @@ public abstract class GameObject {
         this.jumping = jumping;
     }
     
-    public int getFacing(){
-        return facing;
+    public int getDirection(){
+        return direction;
     }
 }

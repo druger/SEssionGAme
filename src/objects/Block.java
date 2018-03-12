@@ -3,10 +3,10 @@ package objects;
 import framework.GameObject;
 import framework.ObjectId;
 import framework.Texture;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.LinkedList;
 import sega.Game;
+
+import java.awt.*;
+import java.util.List;
 
 public class Block extends GameObject {
     
@@ -19,21 +19,19 @@ public class Block extends GameObject {
     }
 
     @Override
-    public void tick(LinkedList<GameObject> object) {
+    public void tick(List<GameObject> object) {
         
     }
 
     @Override
     public void render(Graphics g) {
         
-        if(type == 1) //дорога_иатэ
-            g.drawImage(tex.block[0], (int)x, (int)y, null);
-        if(type == 2) //дорога_кабинет
-            g.drawImage(tex.block[1], (int)x, (int)y, null);
-     
-        /*g.setColor(Color.blue);
-        //g.fillRect((int)x, (int)y, 32, 32);//заливка прямоугольника
-        g.drawRect((int)x, (int)y, 32, 32);//Рисует контур заданного прямоугольника*/
+        if(type == 1) {
+            g.drawImage(tex.block[0], (int) x, (int) y, null);
+        }
+        if(type == 2) {
+            g.drawImage(tex.block[1], (int) x, (int) y, null);
+        }
     }
 
     @Override

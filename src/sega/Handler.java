@@ -77,13 +77,13 @@ public class Handler {
                if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*32, yy*32, 1, ObjectId.BLOCK));//дорога_иатэ
                if(red == 255 && green == 0 && blue == 255) addObject(new Block(xx*32, yy*32, 2, ObjectId.BLOCK));//дорога_кабинет
                //получаем игрока
-               if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*32, yy*32, /*1,*/ this, cam, ObjectId.PLAYER));
-               if(red == 0 && green == 127 && blue == 14) addObject(new Player(xx*32, yy*32, /*2,*/ this, cam, ObjectId.PLAYER_GUN));//игрок с автоматом
+               if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*32, yy*32, /*1,*/ this, ObjectId.PLAYER));
+               if(red == 0 && green == 127 && blue == 14) addObject(new Player(xx*32, yy*32, /*2,*/ this, ObjectId.PLAYER_GUN));//игрок с автоматом
                //получаем препода
-               if(red == 90 && green == 255 && blue == 240) addObject(new Prepod(xx*32, yy*32, this, 1, ObjectId.TEACHER));//матан
-               if(red == 0 && green == 255 && blue == 0) addObject(new Prepod(xx*32, yy*32, this, 2, ObjectId.TEACHER));//прг
-               if(red == 255 && green == 190 && blue == 0) addObject(new Prepod(xx*32, yy*32, this, 3, ObjectId.TEACHER));//fizika
-               if(red == 255 && green == 160 && blue == 60) addObject(new Prepod(xx*32, yy*32, this, 4, ObjectId.TEACHER));//eng
+               if(red == 90 && green == 255 && blue == 240) addObject(new Prepod(xx*32, yy*32, 1, ObjectId.TEACHER));//матан
+               if(red == 0 && green == 255 && blue == 0) addObject(new Prepod(xx*32, yy*32, 2, ObjectId.TEACHER));//прг
+               if(red == 255 && green == 190 && blue == 0) addObject(new Prepod(xx*32, yy*32, 3, ObjectId.TEACHER));//fizika
+               if(red == 255 && green == 160 && blue == 60) addObject(new Prepod(xx*32, yy*32, 4, ObjectId.TEACHER));//eng
              
                if(red == 255 && green == 255 && blue == 0) addObject(new Flag(xx*32, yy*32, ObjectId.FLAG));
                    

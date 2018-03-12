@@ -51,7 +51,7 @@ public class KeyInput extends KeyAdapter {
                 }
                 if (tempObject.getId() == ObjectId.PLAYER_GUN) {
                     if (key == KeyEvent.VK_SPACE) {
-                        handler.addObject(new Bullet(tempObject.getX() + 77, tempObject.getY() + 92, handler, ObjectId.BULLET, tempObject.getFacing() * 5));
+                        handler.addObject(new Bullet(tempObject.getX() + 77, tempObject.getY() + 92, handler, ObjectId.BULLET, tempObject.getDirection() * 5));
                     }
                 }
             }

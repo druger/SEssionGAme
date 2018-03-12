@@ -10,14 +10,13 @@ import sega.Handler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
+import java.util.List;
 
 public class Bullet extends GameObject {
     
     Handler handler;
     
     SpriteList bul;
-    //Texture tex = Game.getInstance();
     
     private BufferedImage bullet_list = null;
     private BufferedImage[] bullet = new BufferedImage[2];
@@ -41,13 +40,12 @@ public class Bullet extends GameObject {
     }
 
     @Override
-    public void tick(LinkedList<GameObject> object) {
+    public void tick(List<GameObject> object) {
         x += velX;
         
         for(int i = 0; i<handler.object.size(); i++ ){
           GameObject tempObject = handler.object.get(i);
-          
-          //удаление объекта
+
           if(tempObject.getId() == ObjectId.BULLET){
               if((tempObject.getX() < 0) || (tempObject.getX() > 2305)){
                   handler.removeObject(tempObject);
@@ -59,10 +57,10 @@ public class Bullet extends GameObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.red);
-        if(facing == 1){
+        if(direction == 1){
             g.drawImage(bullet[0], (int)x, (int)y, 35, 10, null); 
         }
-        if(facing == -1){
+        if(direction == -1){
               g.drawImage(bullet[1], (int)x, (int)y, 35, 10, null);  
         }  
     }

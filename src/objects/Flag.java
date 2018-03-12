@@ -5,21 +5,16 @@ package objects;
 import framework.GameObject;
 import framework.ObjectId;
 import framework.SpriteList;
-import framework.Texture;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.util.LinkedList;
 import sega.BufferedImageLoader;
-import sega.Game;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class Flag extends GameObject{
     
     SpriteList fl;
-    //Texture tex = Game.getInstance();
-    
-    private BufferedImage flag = null;
+    private BufferedImage flag;
 
     public Flag(float x, float y, ObjectId id) {
         super(x, y, id);
@@ -35,15 +30,12 @@ public class Flag extends GameObject{
     }
 
     @Override
-    public void tick(LinkedList<GameObject> object) {
+    public void tick(List<GameObject> object) {
         
     }
 
     @Override
     public void render(Graphics g) {
-        //g.setColor(Color.yellow);
-        //g.fillRect((int)x, (int)y, 32, 32);
-        //g.drawImage(tex.flag[0], (int)x, (int)y, 100, 100, null);
         g.drawImage(flag, (int)x, (int)y, 100, 100, null);
     }
 
