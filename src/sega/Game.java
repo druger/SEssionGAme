@@ -5,31 +5,32 @@ import audio.AudioPlayer;
 import framework.KeyInput;
 import framework.ObjectId;
 import framework.Texture;
-import objects.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 
 public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
-    
-    public static int WIDTH, HEIGHT;
-    
-    private BufferedImage level0 = null, bgStreet = null, matan = null, prg = null, fizika = null, eng = null, telek = null;
 
-    Hud hud;
+    public static int WIDTH;
+    private static int HEIGHT;
 
-    Handler handler;
-    Camera cam;
-    static Texture tex;
+    private BufferedImage level0;
+    private BufferedImage bgStreet;
+    private BufferedImage matan;
+    private BufferedImage prg;
+    private BufferedImage fizika;
+    private BufferedImage eng;
+    private BufferedImage telek;
 
-    Random rand = new Random();
+    private Hud hud;
 
-    private Player player;
+    private Handler handler;
+    private Camera cam;
+    private static Texture tex;
 
     private Menu menu;
 
@@ -44,55 +45,18 @@ public class Game extends Canvas implements Runnable {
 
     public static int LEVEL = 0;
 
-    private void init() {
-        WIDTH = getWidth();
-        HEIGHT = getHeight();
-
-        tex = new Texture();
-
-
-        BufferedImageLoader loader = new BufferedImageLoader();
-        try {
-            level0 = loader.loadImage("/res/Levels/level0.png"); //загрузка  0 уровня
-            bgStreet = loader.loadImage("/res/Backgrounds/streetIate.jpg");//загрузка фона улицы
-            matan = loader.loadImage("/res/Backgrounds/matan.jpg");
-            prg = loader.loadImage("/res/Backgrounds/prg.jpg");
-            fizika = loader.loadImage("/res/Backgrounds/fizika.jpg");
-            eng = loader.loadImage("/res/Backgrounds/eng.jpg");
-            telek = loader.loadImage("/res/Backgrounds/telek.png");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        cam = new Camera(0, 0);
-        handler = new Handler(cam);
-
-        handler.LoadImageLevel(level0);
-
-        hud = new Hud(player);
-
-        menu = new Menu();
-
-        bgMusic = new AudioPlayer("/res/Music/1.mp3");
-        bgMusic.play();
-
-        this.addKeyListener(new KeyInput(handler));
-        setFocusable(true);
-    }
-
     public synchronized void start() {
         if (running) return;
 
         running = true;
         thread = new Thread(this);
         thread.start();
-
     }
 
     @Override
     public void run() {
         init();
-        this.requestFocus();//запрос фокуса
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -121,8 +85,46 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void tick() {
+    private void init() {
+        WIDTH = getWidth();
+        HEIGHT = getHeight();
 
+        tex = new Texture();
+
+        loadImages();
+
+        cam = new Camera(0, 0);
+        handler = new Handler(cam);
+
+        handler.loadImageLevel(level0);
+
+        hud = new Hud();
+
+        menu = new Menu();
+
+        bgMusic = new AudioPlayer("/res/Music/1.mp3");
+        bgMusic.play();
+
+        this.addKeyListener(new KeyInput(handler));
+        setFocusable(true);
+    }
+
+    private void loadImages() {
+        BufferedImageLoader loader = new BufferedImageLoader();
+        try {
+            level0 = loader.loadImage("/res/Levels/level0.png");
+            bgStreet = loader.loadImage("/res/Backgrounds/streetIate.jpg");
+            matan = loader.loadImage("/res/Backgrounds/matan.jpg");
+            prg = loader.loadImage("/res/Backgrounds/prg.jpg");
+            fizika = loader.loadImage("/res/Backgrounds/fizika.jpg");
+            eng = loader.loadImage("/res/Backgrounds/eng.jpg");
+            telek = loader.loadImage("/res/Backgrounds/telek.png");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void tick() {
         if (State == STATE.GAME) {
             handler.tick();
         }
@@ -158,7 +160,7 @@ public class Game extends Canvas implements Runnable {
 
             handler.render(g);
 
-            g2d.translate(-cam.getX(), -cam.getY()); //end of cam
+            g2d.translate(-cam.getX(), -cam.getY());
 
             g.drawImage(telek, 0, 0, this);
 
@@ -167,7 +169,6 @@ public class Game extends Canvas implements Runnable {
         } else if (State == STATE.MENU) {
             menu.render(g);
         }
-
         g.dispose();
         bs.show();
     }
@@ -177,9 +178,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-
         new Window(800, 600, "SEssion GAme", new Game());
-
     }
-
 }
