@@ -12,13 +12,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import static sega.Const.Sprite.BULLET;
+
 public class Bullet extends GameObject {
+
+    private Handler handler;
     
-    Handler handler;
+    private SpriteList bul;
     
-    SpriteList bul;
-    
-    private BufferedImage bullet_list = null;
+    private BufferedImage bullet_list;
     private BufferedImage[] bullet = new BufferedImage[2];
 
     public Bullet(float x, float y, Handler handler, ObjectId id, int velX) {
@@ -29,7 +31,7 @@ public class Bullet extends GameObject {
         
         BufferedImageLoader loader = new BufferedImageLoader();
         try{
-            bullet_list = loader.loadImage("/res/Sprites/bullet.png");
+            bullet_list = loader.loadImage(BULLET);
         }catch(Exception e){
             e.printStackTrace();
         }

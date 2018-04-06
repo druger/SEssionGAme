@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
 
+import static sega.Const.Level.*;
+
 public class Handler {
 
     public List<GameObject> object = new LinkedList<>();
@@ -34,11 +36,11 @@ public class Handler {
     private void loadImages() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
-            level1 = loader.loadImage("/res/Levels/level1.png");
-            level2 = loader.loadImage("/res/Levels/level2.png");
-            level3 = loader.loadImage("/res/Levels/level3.png");
-            level4 = loader.loadImage("/res/Levels/level4.png");
-            level5 = loader.loadImage("/res/Levels/level5.png");
+            level1 = loader.loadImage(LEVEL1);
+            level2 = loader.loadImage(LEVEL2);
+            level3 = loader.loadImage(LEVEL3);
+            level4 = loader.loadImage(LEVEL4);
+            level5 = loader.loadImage(LEVEL5);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,9 +80,9 @@ public class Handler {
                     addObject(new Block(xx * 32, yy * 32, 2, ObjectId.BLOCK));//дорога_кабинет
 
                 if (red == 0 && green == 0 && blue == 255)
-                    addObject(new Player(xx * 32, yy * 32, /*1,*/ this, ObjectId.PLAYER));
+                    addObject(new Player(xx * 32, yy * 32, this, ObjectId.PLAYER));
                 if (red == 0 && green == 127 && blue == 14)
-                    addObject(new Player(xx * 32, yy * 32, /*2,*/ this, ObjectId.PLAYER_GUN));
+                    addObject(new Player(xx * 32, yy * 32, this, ObjectId.PLAYER_GUN));
 
 
                 if (red == 90 && green == 255 && blue == 240)

@@ -11,9 +11,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import static sega.Const.Sprite.NEXT_LEVEL;
+
 public class Flag extends GameObject{
-    
-    SpriteList fl;
+
+    private SpriteList fl;
     private BufferedImage flag;
 
     public Flag(float x, float y, ObjectId id) {
@@ -21,7 +23,7 @@ public class Flag extends GameObject{
         
         BufferedImageLoader loader = new BufferedImageLoader();
         try{
-            flag = loader.loadImage("/res/Sprites/next.png");
+            flag = loader.loadImage(NEXT_LEVEL);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -4,6 +4,8 @@ package sega;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static sega.Const.Background.MENU;
+
 
 public class Menu {
     
@@ -15,7 +17,6 @@ public class Menu {
         "Начать сессию",
         "Опции",
         "Покинуть универ"
-            
     };
     
     public Menu(){
@@ -26,7 +27,7 @@ public class Menu {
     private void loadImage() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try{
-            bgmenu = loader.loadImage("/res/Menu/menu.png");
+            bgmenu = loader.loadImage(MENU);
         }catch(Exception e){
             e.printStackTrace();
         }

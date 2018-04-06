@@ -10,13 +10,15 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import static sega.Const.Background.*;
+import static sega.Const.Game.*;
+
 
 public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
 
     public static int WIDTH;
-    private static int HEIGHT;
 
     private BufferedImage level0;
     private BufferedImage bgStreet;
@@ -87,7 +89,6 @@ public class Game extends Canvas implements Runnable {
 
     private void init() {
         WIDTH = getWidth();
-        HEIGHT = getHeight();
 
         tex = new Texture();
 
@@ -102,7 +103,7 @@ public class Game extends Canvas implements Runnable {
 
         menu = new Menu();
 
-        bgMusic = new AudioPlayer("/res/Music/1.mp3");
+        bgMusic = new AudioPlayer(BG_MUSIC);
         bgMusic.play();
 
         this.addKeyListener(new KeyInput(handler));
@@ -112,13 +113,13 @@ public class Game extends Canvas implements Runnable {
     private void loadImages() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
-            level0 = loader.loadImage("/res/Levels/level0.png");
-            bgStreet = loader.loadImage("/res/Backgrounds/streetIate.jpg");
-            matan = loader.loadImage("/res/Backgrounds/matan.jpg");
-            prg = loader.loadImage("/res/Backgrounds/prg.jpg");
-            fizika = loader.loadImage("/res/Backgrounds/fizika.jpg");
-            eng = loader.loadImage("/res/Backgrounds/eng.jpg");
-            telek = loader.loadImage("/res/Backgrounds/telek.png");
+            level0 = loader.loadImage(LEVEL0);
+            bgStreet = loader.loadImage(STREET);
+            matan = loader.loadImage(MATAN);
+            prg = loader.loadImage(PRG);
+            fizika = loader.loadImage(PHYSICS);
+            eng = loader.loadImage(ENG);
+            telek = loader.loadImage(TV);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,11 +153,7 @@ public class Game extends Canvas implements Runnable {
             g2d.translate(cam.getX(), cam.getY());
 
             g.drawImage(bgStreet, 0, 0, this);
-            if (LEVEL == 1) g.drawImage(matan, 0, 0, this);
-            if (LEVEL == 2) g.drawImage(prg, 0, 0, this);
-            if (LEVEL == 3) g.drawImage(fizika, 0, 0, this);
-            if (LEVEL == 4) g.drawImage(eng, 0, 0, this);
-            if (LEVEL == 5) g.drawImage(bgStreet, 0, 0, this);
+            drawLevels(g);
 
             handler.render(g);
 
@@ -173,11 +170,19 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    private void drawLevels(Graphics g) {
+        if (LEVEL == 1) g.drawImage(matan, 0, 0, this);
+        if (LEVEL == 2) g.drawImage(prg, 0, 0, this);
+        if (LEVEL == 3) g.drawImage(fizika, 0, 0, this);
+        if (LEVEL == 4) g.drawImage(eng, 0, 0, this);
+        if (LEVEL == 5) g.drawImage(bgStreet, 0, 0, this);
+    }
+
     public static Texture getInstance() {
         return tex;
     }
 
     public static void main(String[] args) {
-        new Window(800, 600, "SEssion GAme", new Game());
+        new Window(GAME_WEIGHT, GAME_HEIGHT, GAME_NAME, new Game());
     }
 }

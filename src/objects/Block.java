@@ -9,8 +9,8 @@ import java.awt.*;
 import java.util.List;
 
 public class Block extends GameObject {
-    
-    Texture tex = Game.getInstance();
+
+    private Texture tex = Game.getInstance();
     private int type;
 
     public Block(float x, float y, int type, ObjectId id) {

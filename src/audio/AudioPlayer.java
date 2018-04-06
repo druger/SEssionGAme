@@ -8,6 +8,7 @@ import javax.sound.sampled.Clip;
 
 public class AudioPlayer {
 
+    private static final int SAMPLE_SIZE_IN_BITS = 16;
     private Clip clip;
 
     public AudioPlayer(String s) {
@@ -18,7 +19,7 @@ public class AudioPlayer {
             AudioFormat decodeFormat = new AudioFormat(
                     AudioFormat.Encoding.PCM_SIGNED,
                     baseFormat.getSampleRate(),
-                    16,
+                    SAMPLE_SIZE_IN_BITS,
                     baseFormat.getChannels(),
                     baseFormat.getChannels() * 2,
                     baseFormat.getSampleRate(),

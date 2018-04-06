@@ -12,6 +12,8 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 
+import static sega.Const.Game.JUMP_MUSIC;
+
 public class Player extends GameObject {
 
     private float width = 55;
@@ -43,7 +45,7 @@ public class Player extends GameObject {
         playerGunWalkLeft = new Animation(10, tex.playerGun[4], tex.playerGun[5], tex.playerGun[6]);
 
         sfx = new HashMap<>();
-        sfx.put("jump", new AudioPlayer("/res/SFX/jump.mp3"));
+        sfx.put("jump", new AudioPlayer(JUMP_MUSIC));
     }
 
     @Override

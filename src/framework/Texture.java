@@ -5,6 +5,8 @@ import sega.BufferedImageLoader;
 
 import java.awt.image.BufferedImage;
 
+import static sega.Const.Sprite.*;
+
 public class Texture {
     private SpriteList bl;
     private SpriteList pl;
@@ -37,13 +39,13 @@ public class Texture {
         BufferedImageLoader loader = new BufferedImageLoader();
 
         try {
-            blockList = loader.loadImage("/res/Sprites/dirt/dirt.png");
-            playerList = loader.loadImage("/res/Sprites/Players/player.png");
-            playerGunList = loader.loadImage("/res/Sprites/Players/playerGun.png");
-            prepodListMatan = loader.loadImage("/res/Sprites/Teachers/matan.png");
-            prepodListFizika = loader.loadImage("/res/Sprites/Teachers/fizika.png");
-            prepodListPrg = loader.loadImage("/res/Sprites/Teachers/prg.png");
-            prepodListEng = loader.loadImage("/res/Sprites/Teachers/eng.png");
+            blockList = loader.loadImage(BLOCK);
+            playerList = loader.loadImage(PLAYER);
+            playerGunList = loader.loadImage(PLAYER_GUN);
+            prepodListMatan = loader.loadImage(PREPOD_MATAN);
+            prepodListFizika = loader.loadImage(PREPOD_PHYSICS);
+            prepodListPrg = loader.loadImage(PREPOD_PRG);
+            prepodListEng = loader.loadImage(PREPOD_ENG);
         } catch (Exception e) {
             e.printStackTrace();
         }
